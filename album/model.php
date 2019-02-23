@@ -10,8 +10,8 @@
  		function __construct($Banco){
  			$this->banco = $Banco;
  			
- 			$this->conexao = mysqli_connect(
- 				
+ 			$this->conexao = 
+ 				mysqli_connect(				
  				$this->host,
  				$this->usuario,
  				$this->senha,
@@ -42,6 +42,14 @@
 			";
 			mysqli_query($this->conexao, $sql);
 			mysqli_close($this->conexao);
+		}
+		function retornarImagens(){
+			$sql = "SELECT * FROM imagem";
+
+			return mysqli_query($this->conexao, $sql);
+			mysqli_close();
+
+
 		}
 
 	}	

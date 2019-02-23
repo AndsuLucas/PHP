@@ -5,18 +5,38 @@
 		<title>Formulário</title>
 	</head>
 	<body>
-		<form  method="POST" enctype="multipart/form-data">
+		<form action="controler.php" method="POST" enctype="multipart/form-data">
 			<input type="file" name="img"><br><br>
 			<input type="submit" name="upload" value="Enviar Imagem">
 		</form>
-		<?php 
-			$arquivo = $_FILES['img'];
+		<form method="GET">
+			<button type="input" name="mostrar_imagens">Mostrar imagens</button>
+		</form>
+		<?php
+		require "controler.php";
+		echo "
+			<form method=GET>
+			<select>		
+		";
+		
+		if(isset($_GET["mostrar_imagens"])){
+			$imagens =  $banco->retornarImagens();
 
-			print_r($arquivo);
+			foreach ($imagens as $value){
+				echo "<option>$value[nome_imagem]</option>";
+			}
+
+
+		}
+		echo "
+			</select>
+			</form>
+		";
+
+		?>
 
 
 
-
-		 ?>
+		
 	</body>
 </html>
